@@ -1,7 +1,7 @@
 import DBconect from "./db/db";
 import { UserModel } from "./models/user";
-import { Enum_ObjectiveType, Enum_Rol, Enum_UserState } from './models/enums';
-import { ProjectModel } from "./models/project";
+import { Enum_ObjectiveType, Enum_Rol, Enum_UserState } from './models/Enums/enums';
+import { ProjectModel } from "./models/Project/project";
 import { ObjectId } from "mongoose";
 import { ObjectiveModel } from "./models/objective";
 
