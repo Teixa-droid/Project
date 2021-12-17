@@ -6,6 +6,10 @@ const advanceResolver = {
             const advances = await AdvancementModel.find().populate('project').populate('createdby');
             return advances;
         },
+        advancefilter: async (parents, args) => {
+            const advancedfilter = await (await AdvancementModel.findOne({ project: args.idProject})).depopulate('project').populate('createdby');
+            return advancedfilter;
+        },
     },
     Mutation: {
         createAdvance: async (parents, args) => {
