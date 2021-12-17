@@ -3,7 +3,7 @@ import { AdvancementModel } from "./advance"
 const advanceResolver = {
     Query: {
         Advances: async (parent, args)=>{
-            const advances = await AdvancementModel.find().populate('project').populate('createdBy');
+            const advances = await AdvancementModel.find().populate('project').populate('createdby');
             return advances;
         },
     },
