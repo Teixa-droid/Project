@@ -34,7 +34,9 @@ const userResolvers = {
                 email: args.email,
                 rol: args.rol,
                 state: args.state,
-            });
+            },
+            { new: true}
+            );
             return editedUser;
         },
         deleteUser: async (parent, args) => {

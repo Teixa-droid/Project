@@ -21,7 +21,9 @@ const inscriptionResolver = {
                 status:'ACCEPTED',
                 ticketentry:Date.now(),
 
-            });
+            },
+            {new: true}
+            );
             return approveRegistration;
         },
     },
