@@ -1,6 +1,8 @@
-import { Schema, model } from 'mongoose';
-import {Enum_Rol, Enum_UserState} from '../Enums/enums';
+import mongoose from "mongoose";
 
+const {Schema, model} = mongoose;
+//import {Enum_Rol, Enum_UserState} from '../Enums/enums.js';
+/* 
 interface User{
     email: string;
     identification:string;
@@ -8,10 +10,11 @@ interface User{
     lastname:string;
     rol: Enum_Rol;
     state: Enum_UserState;
-}
+} */
 
 
-const userSchema = new Schema<User>({
+const userSchema = new Schema(
+    {
     email:{
         type:String,
         required: true,
@@ -47,12 +50,12 @@ const userSchema = new Schema<User>({
     rol:{
         type:String,
         required:true,
-        enum:Enum_Rol,
+        enum:['STUDENT', 'LEADER', 'ADMINISTRATOR'],
     },
     state: {
         type:String,
-        enum: Enum_UserState,
-        default:Enum_UserState.PENDING,
+        enum: ['PENDING','AUTHORIZED','UNAUTHORIZED'],
+        default: 'PENDING',
     },
 });
 

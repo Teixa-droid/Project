@@ -1,30 +1,34 @@
-import { Schema, model } from "mongoose";
-import { Enum_InscriptionState } from "../Enums/enums";
-import { ProjectModel } from "../Project/project";
-import { UserModel } from "../User/user";
+import mongoose from "mongoose";
+//import { Enum_InscriptionState } from "../Enums/enums.js";
+import { ProjectModel } from "../Project/project.js";
+import { UserModel } from "../User/user.js";
 
-interface Inscription{
+const {Schema, model} = mongoose;;
+
+/* interface Inscription{
     status: Enum_InscriptionState;
     ticketentry: Date;
     ticketegress: Date;
     project:Schema.Types.ObjectId;
     student:Schema.Types.ObjectId;
-}
+} */
 
 
-const inscriptionSchema = new  Schema<Inscription>({
+const inscriptionSchema = new  Schema(
+    {
     status: {
         type: String,
-        enum: Enum_InscriptionState,
+        enum: ['ACCEPTED', 'REJECTED', 'PENDING'],
+        default: 'PENDING',
         required: true,
     },
     ticketentry: {
         type: Date,
-        required: true,
+        required: false,
     },
     ticketegress: {
         type: Date,
-        required: true,
+        required: false,
     },
     project: {
         type: Schema.Types.ObjectId,
@@ -38,6 +42,6 @@ const inscriptionSchema = new  Schema<Inscription>({
     },
 });
 
-const IscriptionModel = model('Inscription', inscriptionSchema);
+const InscriptionModel = model('Inscription', inscriptionSchema);
 
-export { IscriptionModel }; 
+export { InscriptionModel }; 

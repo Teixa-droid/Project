@@ -23,6 +23,8 @@ type Project{
   step: Enum_ProjectStep!
   leader: User!
   objectives: [Objective]
+  advances: [Advance]
+  inscriptions: [Inscription]
 }
 type Query {
     Projects: [Project]

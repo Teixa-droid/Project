@@ -31,6 +31,12 @@ enum Enum_ProjectStep {
   NULL
 }
 
+enum Enum_InscriptionState {
+  ACCEPTED
+  REJECTED
+  PENDING
+}
+
 `;
 
 export { enumsTypes };
