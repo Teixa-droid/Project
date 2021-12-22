@@ -27,7 +27,7 @@ const userResolvers = {
             return createdUser;
         },
         editUser: async (parent, args) => {
-            const editedUser = await UserModel.findByIdAndUpdate(args.id, {
+            const editedUser = await UserModel.findByIdAndUpdate(args._id, {
                 name: args.name,
                 lastname: args.lastname,
                 identification: args.identification,
