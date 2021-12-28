@@ -35,7 +35,7 @@ type Mutation {
     identification: String!
     email: String!
     state: Enum_UserState
-    rol: Enum_Rol!
+    password: String!
   ): User
 
   deleteUser(_id: String!, email: String): User

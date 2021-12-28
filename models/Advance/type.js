@@ -12,7 +12,7 @@ type Advance{
 
 type Query {
     Advances: [Advance]
-    advancefilter(idProject: String!): [Advance]
+    advancefilter(_id: String!): [Advance]
 }
 type Mutation {
     createAdvance(ticket: Date!, discription: String!, project: String!, createdby: String!): Advance

@@ -7,7 +7,7 @@ const advanceResolver = {
             return advances;
         },
         advancefilter: async (parents, args) => {
-            const advancedfilter = await (await AdvancementModel.findOne({ project: args.idProject})).depopulate('project').populate('createdby');
+            const advancedfilter = await (await AdvancementModel.findOne({ project: args._id})).populate('project').populate('createdby');
             return advancedfilter;
         },
     },

@@ -1,15 +1,37 @@
 import express from 'express';
 import cors from 'cors';
-import {ApolloServer} from 'apollo-server-express';
+import { ApolloServer } from 'apollo-server-express';
 import dotenv from 'dotenv';
-import {type} from './graphql/types.js'
-import { resolver } from './graphql/resolvers.js';
+import { types } from './graphql/types.js'
+import { resolvers } from './graphql/resolvers.js';
 import DBconect from "./db/db.js";
+import { Token } from 'graphql';
+
 dotenv.config();
 
+const getUserData = (token) => {
+    const verification = validateToken(token.split(' ')[1]);
+    if (verification.data) {
+        return verification.data;
+    } else {
+        return null;
+    }
+};
+
 const server = new ApolloServer({
-    typeDefs: type,
-    resolvers: resolver,
+    typeDefs: types,
+    resolvers: resolvers,
+    context: ({ req }) => {
+        const token = req.headers?.authorization ?? null;
+        if (token) {
+            const userData = getUserData(Token);
+            if (userData) {
+                return { userData };
+            }
+        }
+       
+    return null;
+    },
 });
 
 const app = express();
