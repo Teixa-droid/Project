@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 //import { Enum_InscriptionState } from "../Enums/enums.js";
-import { ProjectModel } from "../Project/project.js";
-import { UserModel } from "../User/user.js";
+import { ProjectModel } from '../Project/project.js';
+import { UserModel } from '../User/user.js';
 
 const {Schema, model} = mongoose;;
 

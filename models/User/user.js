@@ -16,7 +16,7 @@ interface User{
 const userSchema = new Schema(
     {
     email:{
-        type:String,
+        type: String,
         required: true,
         unique: true,
         validate:{
@@ -62,6 +62,22 @@ const userSchema = new Schema(
         default: 'PENDING',
     },
 });
+userSchema.virtual('projectsFront', {
+    ref: 'Project',
+    localField: '_id',
+    foreignField: 'leader',
+});
+userSchema.virtual('advanceCreated', {
+    ref: 'Advance',
+    localField: '_id',
+    foreignField: 'createby',
+});
+userSchema.virtual('inscription', {
+    ref: 'Inscription',
+    localField: '_id',
+    foreignField: 'student',
+});
+
 
 const UserModel = model('User', userSchema);
 

@@ -1,4 +1,4 @@
-import { gql } from "apollo-server-express";
+import { gql } from 'apollo-server-express';
 
 const authenticationTypes = gql`
 
@@ -17,13 +17,11 @@ type Mutation {
         state: Enum_UserState
         password: String!
     ): Token!
-    login(
-        email:String,
-        password:String!
-    ):Token
 
-    validateToken: Token
+    login(email: String!, password: String!): Token
+
+    refreshToken: Token
 }
 `;
 
-export {authenticationTypes};
+export { authenticationTypes };

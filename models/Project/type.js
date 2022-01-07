@@ -1,4 +1,4 @@
-import { gql } from "apollo-server-express";
+import { gql } from 'apollo-server-express';
 
 const projectTypes = gql`
 
@@ -13,6 +13,22 @@ input createObjective {
   description: String!
   type: Enum_ObjectiveType! 
 }
+
+input objectiveFields{
+  description: String! 
+  type: Enum_ObjectiveType!
+}
+
+input projectFields{
+  name: String
+  assumption: Float
+  startdate: Date
+  enddate: Date
+  status: Enum_ProjectState
+  step: Enum_ProjectStep
+  leader: String
+}
+
 type Project{
   _id: ID!
   name: String!
@@ -41,7 +57,15 @@ type Mutation {
     step: Enum_ProjectStep!
     leader: String! 
     objectives: [createObjective]
-    ): Project
+    ): Project 
+
+    editProject(_id:String!, fields: projectFields!): Project
+    
+    createObjective(idProject: String!, fields: objectiveFields!): Project
+
+    editObjective(idProject: String!, indexObjective: Int!, fields: objectiveFields!): Project
+
+    removeObjective(idProject: String!, idObjective: String!): Project
 }
 `;
 

@@ -6,6 +6,9 @@ const inscriptionResolver = {
             const inscriptions = await InscriptionModel.find();
             return inscriptions;
         },
+       /*  unapprovedRegistrations: async () => {
+            const ina = await InscriptionModel.find({ state: 'PENDING' }).populate('student');
+        }, */
     },
     Mutation: {
         createInscription: async (parent, args) => {
@@ -16,17 +19,17 @@ const inscriptionResolver = {
             });
             return createdInscription;
         },
-        approveRegistration: async (parent,args) => {
-            const approvedRegistation = await InscriptionModel.findByIdAndUpdate(args.id,{
-                status:'ACCEPTED',
-                ticketentry:Date.now(),
+        approveRegistration: async (parent, args) => {
+            const approvedRegistation = await InscriptionModel.findByIdAndUpdate(args.id, {
+                status: 'ACCEPTED',
+                ticketentry: Date.now(),
 
             },
-            {new: true}
+                { new: true }
             );
             return approveRegistration;
         },
     },
 };
 
-export {inscriptionResolver};
+export { inscriptionResolver };

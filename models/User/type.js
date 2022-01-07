@@ -1,8 +1,6 @@
-import { gql } from "apollo-server-express";
+import { gql } from 'apollo-server-express';
 
 const userTypes = gql`
-
-
 type User {
     _id: ID!
     name: String!
@@ -11,11 +9,13 @@ type User {
     email: String!
     state: Enum_UserState
     rol: Enum_Rol!
+    advanceCreated: [Advance]
+    projectsFront: [Project]
 }
 
 type Query {
     Users: [User]
-    User(_id:String!): User
+    User(_id: String!): User
   }
 
 type Mutation {
@@ -24,8 +24,9 @@ type Mutation {
     lastname: String!
     identification: String!
     email: String!
-    state: Enum_UserState
     rol: Enum_Rol!
+    state: Enum_UserState
+    password: String!
   ): User
 
   editUser(

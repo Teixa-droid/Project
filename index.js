@@ -6,6 +6,7 @@ import { types } from './graphql/types.js'
 import { resolvers } from './graphql/resolvers.js';
 import DBconect from "./db/db.js";
 import { Token } from 'graphql';
+import { validateToken } from './utils/tokenUtils.js';
 
 dotenv.config();
 
@@ -24,12 +25,11 @@ const server = new ApolloServer({
     context: ({ req }) => {
         const token = req.headers?.authorization ?? null;
         if (token) {
-            const userData = getUserData(Token);
+            const userData = getUserData(token);
             if (userData) {
                 return { userData };
             }
         }
-       
     return null;
     },
 });

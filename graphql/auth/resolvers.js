@@ -45,10 +45,26 @@ const resolversAuthentication = {
             }
         },
 
-        validateToken: async(parent,args, context)=>{
-            console.log(context);
+        refreshToken: async(parent,args, context) =>{
+            console.log('context', context);
+            if(!context.userData){
+                return {
+                    error: 'token invalid',
+                };
+            } else {
+                return {
+                    token: generateToken({
+                        _id: context.userData._id,
+                        name: context.userData.name,
+                        lastname: context.userData.lastname,
+                        identification: context.userData.identification,
+                        email: context.userData.email,
+                        rol: context.userData.rol,
+                    }),
+                };
+            }
             
-        }
+        },
     },
 };
 

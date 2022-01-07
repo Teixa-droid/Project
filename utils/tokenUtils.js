@@ -14,6 +14,7 @@ const validateToken = (token) =>{
                 };
             }
         });
+        console.log(verification, token);
         return verification;
     }
 }
@@ -24,4 +25,4 @@ const generateToken = (payload) => {
     });
 };
 
-export {generateToken};
+export {generateToken, validateToken};
