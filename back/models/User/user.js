@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const {Schema, model} = mongoose;
+const { Schema, model } = mongoose;
 //import {Enum_Rol, Enum_UserState} from '../Enums/enums.js';
 /* 
 interface User{
@@ -15,53 +15,53 @@ interface User{
 
 const userSchema = new Schema(
     {
-    email:{
-        type: String,
-        required: true,
-        unique: true,
-        validate:{
-            validator: (email) => {
-                return /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(email);
-            },
+        email: {
+            type: String,
+            required: true,
+            unique: true,
+            validate: {
+                validator: (email) => {
+                    return /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(email);
+                },
                 // (email) => {
-            //    if(!email.includes('@')) {
-            //        return false;
-            //    } else {
-            //        return false;
-            //    }
-            //}, 
-                
-            message: 'O formato do email esta mal',
+                //    if(!email.includes('@')) {
+                //        return false;
+                //    } else {
+                //        return false;
+                //    }
+                //}, 
+
+                message: 'O formato do email esta mal',
+            },
         },
-    },
-    password: {
-        type: String,
-        required: true,
-    },
-    identification:{
-        type:String,
-        required: true,
-        unique: true,
-    },
-    name:{
-        type:String,
-        required:true,
-    },
-    lastname: {
-        type:String,
-        required: true,
-    },
-    rol:{
-        type:String,
-        required:true,
-        enum:['STUDENT', 'LEADER', 'ADMINISTRATOR'],
-    },
-    state: {
-        type:String,
-        enum: ['PENDING','AUTHORIZED','UNAUTHORIZED'],
-        default: 'PENDING',
-    },
-});
+        password: {
+            type: String,
+            required: true,
+        },
+        identification: {
+            type: String,
+            required: true,
+            unique: true,
+        },
+        name: {
+            type: String,
+            required: true,
+        },
+        lastname: {
+            type: String,
+            required: true,
+        },
+        rol: {
+            type: String,
+            required: true,
+            enum: ['STUDENT', 'LEADER', 'ADMINISTRATOR'],
+        },
+        state: {
+            type: String,
+            enum: ['PENDING', 'AUTHORIZED', 'UNAUTHORIZED'],
+            default: 'PENDING',
+        },
+    });
 userSchema.virtual('projectsFront', {
     ref: 'Project',
     localField: '_id',
@@ -70,9 +70,9 @@ userSchema.virtual('projectsFront', {
 userSchema.virtual('advanceCreated', {
     ref: 'Advance',
     localField: '_id',
-    foreignField: 'createby',
+    foreignField: 'createdby',
 });
-userSchema.virtual('inscription', {
+userSchema.virtual('inscriptions', {
     ref: 'Inscription',
     localField: '_id',
     foreignField: 'student',
@@ -81,4 +81,4 @@ userSchema.virtual('inscription', {
 
 const UserModel = model('User', userSchema);
 
-export { UserModel } ;
+export { UserModel };

@@ -7,8 +7,9 @@ type User {
     lastname: String!
     identification: String!
     email: String!
-    state: Enum_UserState
     rol: Enum_Rol!
+    state: Enum_UserState
+    inscriptions: [Inscription]
     advanceCreated: [Advance]
     projectsFront: [Project]
 }
