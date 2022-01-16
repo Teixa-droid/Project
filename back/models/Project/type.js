@@ -53,8 +53,6 @@ type Mutation {
     assumption: Float!
     startdate: Date!
     enddate: Date!
-    status: Enum_ProjectState!
-    step: Enum_ProjectStep!
     leader: String! 
     objectives: [createObjective]
     ): Project 

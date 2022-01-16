@@ -15,11 +15,7 @@ type Query{
 }
 
 type Mutation{
-    createInscription(
-        status: Enum_InscriptionState!
-        project: String!
-        student: String!
-    ): Inscription
+    createInscription(project: String!, student: String!): Inscription
 
     approveRegistration(id:String!): Inscription
     

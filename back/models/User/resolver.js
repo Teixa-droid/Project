@@ -2,25 +2,15 @@ import { UserModel } from "./user.js";
 import bcrypt from 'bcrypt';
 
 const userResolvers = {
-
+    User: {
+        inscriptions: async (parent, args, context) => {
+            return InscriptionModel.find({ student: parent._id });
+        },
+    },
     Query: {
         Users: async (parent, args, context) => {
-            const users = await UserModel.find();
-           /*  .populate([
-                {
-                    path: 'inscriptions',
-                    populate: {
-                        path: 'project',
-                        populate: [{ path: 'leader' }, { path: 'advances' }],
-                    },
-                },
-                {
-                    path: 'projectsFront',
-                },
-                {
-                    path: 'advances',
-                },
-            ]); */
+            console.log(args);
+            const users = await UserModel.find({ ...args.filter });
         return users;
     },
     User: async (parent, args) => {

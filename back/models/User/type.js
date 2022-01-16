@@ -14,8 +14,16 @@ type User {
     projectsFront: [Project]
 }
 
+input FilterUser{
+    _id: ID
+    identification: String
+    email: String
+    rol: Enum_Rol
+    state: Enum_UserState
+}
+
 type Query {
-    Users: [User]
+    Users(filter: FilterUser): [User]
     User(_id: String!): User
   }
 

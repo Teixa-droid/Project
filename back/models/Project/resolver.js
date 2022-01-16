@@ -1,7 +1,22 @@
 import { ProjectModel } from './project.js';
+import { UserModel } from '../User/user.js';
+import { InscriptionModel } from '../Inscription/inscription.js';
 
 const projectResolvers = {
-
+    Project: {
+        leader: async (parent, args, context) => {
+            const usr = await UserModel.findOne({
+                _id: parent.leader.toString(),
+            });
+            return usr;
+        },
+        inscriptions: async (parent, args, context) => {
+            const inscriptions = await InscriptionModel.find({
+                project: parent._id,
+            });
+            return inscriptions;
+        },
+    },
     Query: {
         Projects: async (parent, args, context) => {
 
@@ -14,8 +29,6 @@ const projectResolvers = {
         createProject: async (parent, args) => {
             const createdproject = await ProjectModel.create({
                 name: args.name,
-                state: args.state,
-                step: args.step,
                 startdate: args.startdate,
                 enddate: args.enddate,
                 assumption: args.assumption,

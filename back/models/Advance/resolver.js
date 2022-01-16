@@ -13,7 +13,7 @@ const advanceResolver = {
     },
     Mutation: {
         createAdvance: async (parents, args) => {
-            const advanceCreated = AdvancementModel.create({
+            const advanceCreated = await AdvancementModel.create({
                 ticket: args.ticket,
                 discription: args.discription,
                 project: args.project,
