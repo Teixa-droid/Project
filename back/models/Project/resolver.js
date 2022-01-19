@@ -19,6 +19,12 @@ const projectResolvers = {
     },
     Query: {
         Projects: async (parent, args, context) => {
+            if (context.userData) {
+                if (context.userData.rol === 'LEADER') {
+                  const projects = await ProjectModel.find({ leader: context.userData._id });
+                  return projects;
+                } 
+              }
 
             const projects = await ProjectModel.find();
             return projects;

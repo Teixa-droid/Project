@@ -9,6 +9,7 @@ type User {
     email: String!
     rol: Enum_Rol!
     state: Enum_UserState
+    picture: String
     inscriptions: [Inscription]
     advanceCreated: [Advance]
     projectsFront: [Project]
@@ -21,6 +22,13 @@ input FilterUser{
     rol: Enum_Rol
     state: Enum_UserState
 }
+
+input EditProfileFilter {
+    name: String
+    lastname: String
+    identification: String
+    picture: String
+  }
 
 type Query {
     Users(filter: FilterUser): [User]
@@ -47,6 +55,8 @@ type Mutation {
     state: Enum_UserState
     password: String!
   ): User
+
+  editProfile(_id: String!, fields: EditProfileFilter!): User
 
   deleteUser(_id: String!, email: String): User
 
