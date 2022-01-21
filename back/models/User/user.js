@@ -51,7 +51,7 @@ const userSchema = new Schema(
             type: String,
             required: true,
         },
-        picture: {
+        mypicture: {
             type: String,
             required: true,
         },

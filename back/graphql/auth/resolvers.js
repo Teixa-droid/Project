@@ -33,15 +33,15 @@ const resolversAuthentication = {
             const userFound = await UserModel.findOne({ email: args.email });
             if (await bcrypt.compare(args.password, userFound.password)) {
                 return {
-                    token: generateToken({
-                        _id: userFound._id,
-                        name: userFound.name,
-                        lastname: userFound.lastname,
-                        identification: userFound.identification,
-                        email: userFound.email,
-                        rol: userFound.rol,
-                        picture: userFound.picture,
-                    }),
+                  token: generateToken({
+                    _id: userFound._id,
+                    name: userFound.name,
+                    lastname: userFound.lastname,
+                    identification: userFound.identification,
+                    email: userFound.email,
+                    rol: userFound.rol,
+                    mypicture: userFound.mypicture,
+                  }),
                 };
             }
         },
@@ -54,15 +54,15 @@ const resolversAuthentication = {
                 };
             } else {
                 return {
-                    token: generateToken({
-                        _id: context.userData._id,
-                        name: context.userData.name,
-                        lastname: context.userData.lastname,
-                        identification: context.userData.identification,
-                        email: context.userData.email,
-                        rol: context.userData.rol,
-                        picture: context.userData.picture,
-                    }),
+                  token: generateToken({
+                    _id: context.userData._id,
+                    name: context.userData.name,
+                    lastname: context.userData.lastname,
+                    identification: context.userData.identification,
+                    email: context.userData.email,
+                    rol: context.userData.rol,
+                    mypicture: context.userData.mypicture,
+                  }),
                 };
             }
             

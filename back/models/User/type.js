@@ -9,7 +9,7 @@ type User {
     email: String!
     rol: Enum_Rol!
     state: Enum_UserState
-    picture: String
+    mypicture: String
     inscriptions: [Inscription]
     advanceCreated: [Advance]
     projectsFront: [Project]
@@ -27,7 +27,7 @@ input EditProfileFilter {
     name: String
     lastname: String
     identification: String
-    picture: String
+    mypicture: String
   }
 
 type Query {
